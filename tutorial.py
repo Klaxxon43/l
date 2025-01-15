@@ -12,6 +12,11 @@ PLAYER_VEL = 5
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
 
+selected_skin = 'MaskDown' # Инициализируем значение по умолчанию
+selected_background = None
+
+
+
 def flip(sprites):
     return [pygame.transform.flip(sprite, True, False) for sprite in sprites]
 
@@ -57,7 +62,7 @@ class Player(pygame.sprite.Sprite):
     SPRITES = None
     ANIMATION_DELAY = 3
 
-    def __init__(self, x, y, width, height, skin="MaskDude"):
+    def __init__(self, x, y, width, height, skin=selected_skin):
         super().__init__()
         self.rect = pygame.Rect(x, y, width, height)
         self.x_vel = 0
@@ -340,7 +345,7 @@ def handle_move(player, objects):
             player.make_hit()
 
 
-def levels_menu(window, skin="MaskDude"):
+def levels_menu(window, skin=None, selected_background=None):
     font = pygame.font.Font(None, 74)
     button_font = pygame.font.Font(None, 36)
 
